@@ -1,0 +1,22 @@
+{
+  "name": "cypress-computerdatabaseherokuapp",
+  "version": "1.0.0",
+  "description": "this is for cypress computer database herokuapp",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "merge:reports": "mochawesome-merge cypress/results/reports/mochawesome/*.json > cypress-combined-report.json",
+    "create:html:report": "npm run merge:reports && marge --reportDir cypress/results/reports/testReports cypress-combined-report.json"
+  },
+  "author": "Nitin Chadha",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^7.5.0",
+    "mocha": "^9.1.2",
+    "mochawesome": "^6.3.0",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0",
+    "typescript": "^4.4.3"
+  }
+}

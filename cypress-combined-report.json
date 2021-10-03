@@ -1,0 +1,336 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-10-03T15:51:57.290Z",
+    "end": "2021-10-03T15:52:11.824Z",
+    "duration": 11156,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "af98730e-38c5-49a1-8121-124d238929e6",
+      "title": "",
+      "fullFile": "cypress/integration/smokeTests/smoke.spec.ts",
+      "file": "cypress/integration/smokeTests/smoke.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ebe75993-91d4-444c-9feb-c4b57b58a40e",
+          "title": "Computer Database Herokuapp - Smoke Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "6e53a4d7-acc0-4e06-a900-51ea504a9588",
+              "title": "TC001 - Add a computer",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "90afa0ea-cda7-45ff-83e0-db8c5e2f6a1f",
+                  "title": "Given When a User has accessed the application And a User tries to add a new computer with valid details",
+                  "fullFile": "",
+                  "file": "",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Then a new computer should be added successfully",
+                      "fullTitle": "Computer Database Herokuapp - Smoke Tests TC001 - Add a computer Given When a User has accessed the application And a User tries to add a new computer with valid details Then a new computer should be added successfully",
+                      "timedOut": null,
+                      "duration": 4946,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let initialTotalComputers;\nmainHome.getScreenTitle().then((element) => {\n    initialTotalComputers = element.text().replace(' computers found', '');\n});\nmainHome.getAddNewComputer().click();\naddComputer.getScreenTitle().should('have.text', addComputer.screenTitle);\ncomputerName = data[dataReference].computerName;\ncomputerName = computerName.replace(/XXXXX/gi, commonFunctions.randomInt(1000000, 9999999).toString());\naddComputer.getComputerName().type(computerName);\naddComputer.getIntroducedDate().type(data[dataReference].introducedDate);\naddComputer.getDiscontinuedDate().type(data[dataReference].discountinuedDate);\naddComputer.getCompany().select(data[dataReference].company);\naddComputer.getSaveComputer().click();\nmainHome.getScreenTitle().should('contain.text', mainHome.screenTitle);\nmainHome.getConfirmationMessage().should('contain.text', mainHome.addConfirmMessage.replace('<COMPUTER>', computerName));\nmainHome.getScreenTitle().then((element) => {\n    expect(Number(element.text().replace(' computers found', ''))).to.equal(Number(initialTotalComputers) + 1);\n});",
+                      "err": {},
+                      "uuid": "e0bc844c-d9d7-4e6d-9c07-ece3b3788d48",
+                      "parentUUID": "90afa0ea-cda7-45ff-83e0-db8c5e2f6a1f",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "e0bc844c-d9d7-4e6d-9c07-ece3b3788d48"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 4946,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "7fd26dc5-9329-4c93-af17-760308f5b70d",
+              "title": "TC007 - Search a computer",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "64ba6e65-ffb0-442f-bc2b-707920ea6222",
+                  "title": "Given When a User has accessed the application And a User tries to search computer",
+                  "fullFile": "",
+                  "file": "",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Then computer should be search successfully with partial name",
+                      "fullTitle": "Computer Database Herokuapp - Smoke Tests TC007 - Search a computer Given When a User has accessed the application And a User tries to search computer Then computer should be search successfully with partial name",
+                      "timedOut": null,
+                      "duration": 731,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "mainHome.getFilterByComputerName().type(computerName.split(' ')[1]);\nmainHome.getFilterByNameButton().click();\nmainHome.getComputerRecord(1, 1).should('have.text', computerName);\nlet introducedDate = new Date(data[dataReference].introducedDate);\nmainHome.getComputerRecord(1, 2).should('contain.text', (introducedDate.getDate() + ' '\n    + introducedDate.toLocaleString('en-us', { month: 'short' }) + ' ' + introducedDate.getFullYear()));\nlet discountinuedDate = new Date(data[dataReference].discountinuedDate);\nmainHome.getComputerRecord(1, 3).should('contain.text', (discountinuedDate.getDate() + ' '\n    + discountinuedDate.toLocaleString('en-us', { month: 'short' }) + ' ' + discountinuedDate.getFullYear()));\nmainHome.getComputerRecord(1, 4).should('contain.text', data[dataReference].company);",
+                      "err": {},
+                      "uuid": "c8ee74bf-62b4-47c4-94f0-bc9e33476f82",
+                      "parentUUID": "64ba6e65-ffb0-442f-bc2b-707920ea6222",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Then computer should be search successfully with complete name",
+                      "fullTitle": "Computer Database Herokuapp - Smoke Tests TC007 - Search a computer Given When a User has accessed the application And a User tries to search computer Then computer should be search successfully with complete name",
+                      "timedOut": null,
+                      "duration": 820,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "mainHome.getFilterByComputerName().clear();\nmainHome.getFilterByComputerName().type(computerName);\nmainHome.getFilterByNameButton().click();\nmainHome.getComputerRecord(1, 1).should('have.text', computerName);\nlet introducedDate = new Date(data[dataReference].introducedDate);\nmainHome.getComputerRecord(1, 2).should('contain.text', (introducedDate.getDate() + ' '\n    + introducedDate.toLocaleString('en-us', { month: 'short' }) + ' ' + introducedDate.getFullYear()));\nlet discountinuedDate = new Date(data[dataReference].discountinuedDate);\nmainHome.getComputerRecord(1, 3).should('contain.text', (discountinuedDate.getDate() + ' '\n    + discountinuedDate.toLocaleString('en-us', { month: 'short' }) + ' ' + discountinuedDate.getFullYear()));\nmainHome.getComputerRecord(1, 4).should('contain.text', data[dataReference].company);",
+                      "err": {},
+                      "uuid": "1af41cf9-874a-465f-91e5-c75614299bef",
+                      "parentUUID": "64ba6e65-ffb0-442f-bc2b-707920ea6222",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "c8ee74bf-62b4-47c4-94f0-bc9e33476f82",
+                    "1af41cf9-874a-465f-91e5-c75614299bef"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 1551,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "8c4ac4e2-4e8f-4fee-8e6c-f1d359dade51",
+              "title": "TC004 - Edit a computer",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "41bb56dc-46ad-4b49-b328-b6170f524c8b",
+                  "title": "Given When a User has accessed the application And a User tries to edit a computer with valid details",
+                  "fullFile": "",
+                  "file": "",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Then a new computer should be updated successfully",
+                      "fullTitle": "Computer Database Herokuapp - Smoke Tests TC004 - Edit a computer Given When a User has accessed the application And a User tries to edit a computer with valid details Then a new computer should be updated successfully",
+                      "timedOut": null,
+                      "duration": 2453,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "mainHome.getFilterByComputerName().clear();\nmainHome.getFilterByComputerName().type(computerName);\nmainHome.getComputerRecord(1, 1).find('a').click();\neditComputer.getScreenTitle().should('have.text', editComputer.screenTitle);\neditComputer.getComputerName().should('have.value', computerName);\neditComputer.getIntroducedDate().should('have.value', data[dataReference].introducedDate);\neditComputer.getDiscontinuedDate().should('have.value', data[dataReference].discountinuedDate);\neditComputer.getCompany().find('option:selected').should('have.text', data[dataReference].company);\neditComputer.getDiscontinuedDate().clear();\neditComputer.getSaveComputer().click();\nmainHome.getScreenTitle().should('contain.text', mainHome.screenTitle);\nmainHome.getConfirmationMessage().should('contain.text', mainHome.editConfirmMessage.replace('<COMPUTER>', computerName));\nmainHome.getFilterByComputerName().type(computerName);\nmainHome.getFilterByNameButton().click();\nmainHome.getComputerRecord(1, 1).should('have.text', computerName);\nlet introducedDate = new Date(data[dataReference].introducedDate);\nmainHome.getComputerRecord(1, 2).should('contain.text', (introducedDate.getDate() + ' '\n    + introducedDate.toLocaleString('en-us', { month: 'short' }) + ' ' + introducedDate.getFullYear()));\nmainHome.getComputerRecord(1, 3).should('contain.text', '-');\nmainHome.getComputerRecord(1, 4).should('contain.text', data[dataReference].company);",
+                      "err": {},
+                      "uuid": "cfbb3d37-a3b6-4805-9a66-e9c79e2a348b",
+                      "parentUUID": "41bb56dc-46ad-4b49-b328-b6170f524c8b",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "cfbb3d37-a3b6-4805-9a66-e9c79e2a348b"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 2453,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "26e03cb4-9238-4e70-8455-ca3e91e5e7b0",
+              "title": "TC005 - Delete a computer",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "e9c88fe5-494c-4c6c-802d-02c40996cabb",
+                  "title": "Given When a User has accessed the application And a User tries to delete a computer",
+                  "fullFile": "",
+                  "file": "",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Then a new computer should be deleted successfully",
+                      "fullTitle": "Computer Database Herokuapp - Smoke Tests TC005 - Delete a computer Given When a User has accessed the application And a User tries to delete a computer Then a new computer should be deleted successfully",
+                      "timedOut": null,
+                      "duration": 2206,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "mainHome.getFilterByComputerName().clear();\nmainHome.getFilterByComputerName().type(computerName);\nmainHome.getComputerRecord(1, 1).find('a').click();\neditComputer.getScreenTitle().should('have.text', editComputer.screenTitle);\neditComputer.getDeleteComputer().click();\nmainHome.getScreenTitle().should('contain.text', mainHome.screenTitle);\nmainHome.getConfirmationMessage().should('contain.text', mainHome.deleteConfirmMessage);\nmainHome.getFilterByComputerName().type(computerName);\nmainHome.getFilterByNameButton().click();\nmainHome.getScreenTitle().should('have.text', mainHome.noComputerFound);",
+                      "err": {},
+                      "uuid": "6ada95f8-7b72-44fc-b037-586c4021c331",
+                      "parentUUID": "e9c88fe5-494c-4c6c-802d-02c40996cabb",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "6ada95f8-7b72-44fc-b037-586c4021c331"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 2206,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.3.0"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
